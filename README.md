@@ -3,19 +3,19 @@
 ## Activity 0 - Warm up
 Q: What is the difference between image and container?
 
-Docker image is the template loaded onto the container to run it while container is a self-contained, runnable software application or service.
+`Docker image is the template loaded onto the container to run it while container is a self-contained, runnable software application or service.`
 
 Q: Where are images stored?
 
-For Linux, they are stored under /var/lib/docker/overlay2, while for windows there are stored under C:\ProgramData\docker\windowsfilter.`
+`For Linux, they are stored under /var/lib/docker/overlay2, while for windows there are stored under C:\ProgramData\docker\windowsfilter.`
 
 Q: What is Docker?
 
-Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers.
+`Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers.`
 
 Q: Compare the size of an alpine and debian image, which is smaller?
 
-Alpine images tend to be much smaller than Debian-based images due to their minimalistic nature.
+`Alpine images tend to be much smaller than Debian-based images due to their minimalistic nature.`
 
 ## Activity 1a: Explore Debian and Build on It
 
@@ -81,3 +81,21 @@ provide the environment variable when running the container such that it would n
 ```sh
 docker run -e APP_ENVIRONMENT=default -dp 9093:8080 express-app:0.1
 ```
+
+### Activity 1e: Build and Run in an EC2 instance
+
+1. Create a t2.micro instance with internet access
+2. Install docker
+    - verify that you can execute docker commands as a non-root user 
+    - by adding group membership for the dafault ec2-user so you can run all docker command without using sudo
+```sh
+sudo usermod -a -G docker ec2-user
+id ec2_user
+# reload a linux user's group assignment to docker w/o logout
+newgrp docker
+```
+3. Install git and clone this repo (using http-based url, repo can be cloned without credentials)
+4. Build the image and run the container
+5. Verify that website is reachable
+
+reference: [link](https://www.cyberciti.biz/faq/how-to-install-docker-on-amazon-linux-2/)
